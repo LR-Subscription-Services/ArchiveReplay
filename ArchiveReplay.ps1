@@ -1,24 +1,24 @@
 using namespace System.Collections.Generic
 
-# Date format: "YYYY-mm-dd" 29
+# Date format: "YYYY-mm-dd" - Set your date range for log collection/extraction.  
 [datetime]$StartDate = "2019-05-02"
 [datetime]$EndDate = "2019-05-03"
 
 
-# Log Source Target - LogRhythm Log Source ID #
+# Log Source Target - LogRhythm Log Source ID #.  Grab this number from the LogRhythm console via Log Sources.  Find your log source, scroll to the right for the ID.
 $LogSourceIDs = @(31, 21)
 
-# Platform Manager
+# Platform Manager - Hostname or IP Address of Platform Manager
 $PlatformManager = "TAM-PM"
 
 # Archives Source Folder
 $ArchivesSourceFolder = "D:\LogRhythmArchives\Inactive"
 
-# Source & Destination Folder
+# Source & Destination Folder - Ensure appropriate storage is available to support copying and extracting the in-scope archives
 $SourceFolder = "D:\ArchiveReplay\Source"
 $DestFolder = "D:\ArchiveReplay\Dest"
 
-# Archive Utility
+# Archive Utility - Retrieve this executable from the LogRhythm Community
 $ArchiveUtil = "D:\ArchiveReplay\LogRhythmArchiveUtility_1.0.0\lrarchiveutil.exe"
 
 
@@ -206,7 +206,7 @@ function extractArchiveFiles {
 
     $SB_ExtractLca = {
         param($Source, $Dest, $PM, $Util)
-        Start-Process 'cmd' -ArgumentList "/k", "$Util -S $PM -U sa -P logrhythm!1 -s $Source -d $Dest -cT -Ih -mt 2"
+        Start-Process 'cmd' -ArgumentList "/k", "$Util -S $PM -U sa -P changeme -s $Source -d $Dest -cT -Ih -mt 2"
     }
 
     # Begin archive extract
